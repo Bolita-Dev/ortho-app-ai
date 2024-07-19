@@ -51,7 +51,7 @@ const Textfield = () => {
         </p>
         <button
           type="button"
-          className="ml-auto flex bg-gradient-to-r from-purple-600 text-sm font-medium to-pink-600 cursor-pointer items-center gap-2 whitespace-nowrap  px-2 py-2 text-center  tracking-wide text-slate-100 transition hover:opacity-75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 active:opacity-100 active:outline-offset-0 disabled:cursor-not-allowed disabled:opacity-75  dark:text-slate-100 dark:focus-visible:outline-blue-600 rounded-xl"
+          className="ml-auto flex bg-gradient-to-r from-purple-600 to-pink-600 text-sm font-medium cursor-pointer items-center gap-2 whitespace-nowrap  px-2 py-2 text-center  tracking-wide text-slate-100 transition hover:opacity-75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 active:opacity-100 active:outline-offset-0 disabled:cursor-not-allowed disabled:opacity-75  dark:text-slate-100 dark:focus-visible:outline-blue-600 rounded-xl"
           /*  onClick={handleClick} */
           disabled={wordCount < 3}
         >

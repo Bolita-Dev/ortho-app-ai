@@ -6,6 +6,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { z } from "zod";
 import Textfield from "@/app/components/Textfield";
 import Card from "./components/Card";
+import ResultsCard from "./components/ResultsCard";
 export default function Home() {
   const [input, setInput] = useState("");
 
@@ -49,14 +50,14 @@ export default function Home() {
   return (
     <main className="bg-slate-900 h-screen p-4">
       <div className="flex flex-col gap-4 items-center">
-        <div className="flex w-full max-w-3xl">
+        <div className="flex w-full max-w-3xl mt-8">
           <Textfield />
         </div>
 
         <div className="flex w-full max-w-3xl gap-4">
           <Card>
             <div className="dark:text-slate-500 mb-2">
-              <span className="text-sm font-semibold">Texto revisado</span>
+              <span className="text-sm">Texto corregido</span>
             </div>
             <p className="text-pretty text-m text-slate-700 dark:text-slate-300">
               A magician who turns caffeine into code, pizza into programs, and
@@ -66,13 +67,17 @@ export default function Home() {
 
           <Card>
             <div className="dark:text-slate-500 mb-2">
-              <span className="text-sm font-semibold">Texto original</span>
+              <span className="text-sm">Texto original</span>
             </div>
             <p className="text-pretty text-m text-slate-700 dark:text-slate-300">
               Someone who talks to computers in their own language and
               occasionally gets a response.
             </p>
           </Card>
+        </div>
+
+        <div className="flex w-full max-w-3xl">
+          <ResultsCard />
         </div>
       </div>
     </main>
