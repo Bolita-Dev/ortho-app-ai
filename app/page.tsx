@@ -65,8 +65,9 @@ export default function Home() {
               <span className="text-sm">Texto corregido</span>
             </div>
             <p className="text-pretty text-m text-slate-700 dark:text-slate-300">
-              A magician who turns caffeine into code, pizza into programs, and
-              stress into syntax errors.
+              A magician who turns{" "}
+              <span className="text-red-600 cursor-pointer">caffeine</span> into
+              code, pizza into programs, and stress into syntax errors.
             </p>
           </Card>
 
@@ -75,8 +76,9 @@ export default function Home() {
               <span className="text-sm">Texto original</span>
             </div>
             <p className="text-pretty text-m text-slate-700 dark:text-slate-300">
-              Someone who talks to computers in their own language and
-              occasionally gets a response.
+              Someone who talks to{" "}
+              <span className="text-green-600 cursor-pointer">computers</span>{" "}
+              in their own language and occasionally gets a response.
             </p>
           </Card>
         </div>

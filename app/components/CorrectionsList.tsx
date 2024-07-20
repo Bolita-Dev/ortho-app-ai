@@ -25,7 +25,7 @@ const CorrectionsList = ({
             </span>
           </span>
         </div>
-        <div className="flex-1 text-slate-700 dark:text-slate-300 text-nowrap text-ellipsis overflow-hidden ml-2">
+        <div className="flex-1 text-sm text-slate-700 dark:text-slate-300 text-nowrap text-ellipsis overflow-hidden ml-2">
           Es un verbo que se usa principalmente como auxiliar en tiempos
           compuestos o para referirse a la existencia de algo.
         </div>
@@ -56,7 +56,7 @@ const CorrectionsList = ({
             </span>
           </span>
         </div>
-        <div className="flex-1 text-slate-700 dark:text-slate-300 text-nowrap text-ellipsis overflow-hidden ml-2">
+        <div className="flex-1 text-sm text-slate-700 dark:text-slate-300 text-nowrap text-ellipsis overflow-hidden ml-2">
           Ao para referirse a la existencia de algo.
         </div>
         <div>
