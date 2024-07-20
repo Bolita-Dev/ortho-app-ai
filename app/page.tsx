@@ -1,15 +1,19 @@
 "use client";
 
 import Textfield from "@/app/components/Textfield";
-import { google } from "@ai-sdk/google";
 import { generateObject } from "ai";
 import { ChangeEvent, useState } from "react";
 import { z } from "zod";
 import Card from "./components/Card";
 import CorrectionsList from "./components/CorrectionsList";
+import { createGoogleGenerativeAI } from "@ai-sdk/google";
+
 export default function Home() {
   const [input, setInput] = useState("");
 
+  const google = createGoogleGenerativeAI({
+    apiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY,
+  });
   const handleSubmit = async (event: any) => {
     const response = await generateObject({
       model: google("models/gemini-1.5-flash-latest"),
@@ -50,7 +54,10 @@ export default function Home() {
     <main className="bg-slate-900 h-screen p-4">
       <div className="flex flex-col gap-4 items-center">
         <div className="flex w-full max-w-3xl mt-8">
-          <Textfield handleOnClick={handleSubmit} />
+          <Textfield
+            handleOnClick={handleSubmit}
+            handleOnChange={handleOnChange}
+          />
         </div>
 
         {/* <div className="flex w-full max-w-3xl">

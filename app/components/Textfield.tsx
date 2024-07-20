@@ -2,8 +2,10 @@ import React, { FormEvent, MouseEventHandler, useRef, useState } from "react";
 
 const Textfield = ({
   handleOnClick,
+  handleOnChange,
 }: {
   handleOnClick: (event: any) => void;
+  handleOnChange: (event: any) => void;
 }) => {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const [wordCount, setWordCount] = useState<number>(0);
@@ -45,6 +47,7 @@ const Textfield = ({
           rows={2}
           placeholder="Escribe o pega aquí la frase a revisar..."
           onInput={handleInput}
+          onChange={handleOnChange}
         ></textarea>
       </div>
       <div className="flex w-full items-center justify-between border-t border-slate-300 bg-slate-100 pl-6 pr-2 py-2 dark:border-slate-700 dark:bg-slate-800">
