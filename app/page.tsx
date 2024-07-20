@@ -7,6 +7,7 @@ import { z } from "zod";
 import Textfield from "@/app/components/Textfield";
 import Card from "./components/Card";
 import ResultsCard from "./components/ResultsCard";
+import CorrectionsList from "./components/CorrectionsList";
 export default function Home() {
   const [input, setInput] = useState("");
 
@@ -54,6 +55,10 @@ export default function Home() {
           <Textfield />
         </div>
 
+        <div className="flex w-full max-w-3xl">
+          <ResultsCard />
+        </div>
+
         <div className="flex w-full max-w-3xl gap-4">
           <Card>
             <div className="dark:text-slate-500 mb-2">
@@ -76,8 +81,8 @@ export default function Home() {
           </Card>
         </div>
 
-        <div className="flex w-full max-w-3xl">
-          <ResultsCard />
+        <div className="flex w-full max-w-3xl mt-4">
+          <CorrectionsList />
         </div>
       </div>
     </main>
