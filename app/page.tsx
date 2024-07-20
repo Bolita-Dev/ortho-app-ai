@@ -8,8 +8,30 @@ import Card from "./components/Card";
 import CorrectionsList from "./components/CorrectionsList";
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
 
+const schema = z.object({
+  corrected: z.string(),
+  explanation: z.string(),
+  corrections: z.array(
+    z.object({
+      original: z.string(),
+      corrected: z.string(),
+      explanation: z.string(),
+    })
+  ),
+  evaluation: z.object({
+    score: z.number(),
+    errors: z.number(),
+    warnings: z.number(),
+    info: z.number(),
+  }),
+});
+
+type ResultType = z.infer<typeof schema>;
 export default function Home() {
   const [input, setInput] = useState("");
+  const [result, setResult] = useState<ResultType>({} as ResultType);
+
+  const { corrected, corrections } = result;
 
   const google = createGoogleGenerativeAI({
     apiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY,
@@ -17,23 +39,7 @@ export default function Home() {
   const handleSubmit = async (event: any) => {
     const response = await generateObject({
       model: google("models/gemini-1.5-flash-latest"),
-      schema: z.object({
-        corrected: z.string(),
-        explanation: z.string(),
-        corrections: z.array(
-          z.object({
-            original: z.string(),
-            corrected: z.string(),
-            explanation: z.string(),
-          })
-        ),
-        evaluation: z.object({
-          score: z.number(),
-          errors: z.number(),
-          warnings: z.number(),
-          info: z.number(),
-        }),
-      }),
+      schema,
       prompt: `Revisa si la siguiente frase tiene faltas de ortografía 
       y devuelve un fichero json con la frase corregida y un array con 
       las palabras que estaban mal y muestra su versión errónea y correcta y 
@@ -41,7 +47,7 @@ export default function Home() {
       ortográfica que está incumpliendo: ${input}`,
     });
 
-    console.log(response.object);
+    setResult(response.object);
   };
 
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
