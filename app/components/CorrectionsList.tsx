@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement } from 'react';
 
 const CorrectionsList = ({
   children,
@@ -16,7 +16,7 @@ const CorrectionsList = ({
           </span>
         </div>
         <div className="flex">
-          <p className="text-slate-700 dark:text-slate-500">--{">"}</p>
+          <p className="text-slate-700 dark:text-slate-500">--{'>'}</p>
         </div>
         <div>
           <span className="w-fit inline-flex overflow-hidden rounded-xl border border-green-600 bg-white text-sm font-medium text-green-600 dark:border-green-600 dark:bg-slate-900 dark:text-green-600">
@@ -32,8 +32,7 @@ const CorrectionsList = ({
         <div>
           <button
             type="button"
-            className="cursor-pointer whitespace-nowrap rounded-xl bg-slate-100 px-4 py-2 text-xs font-medium tracking-wide text-black transition hover:opacity-75 text-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-100 active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed dark:bg-slate-800 dark:text-slate-300 dark:focus-visible:outline-slate-800"
-          >
+            className="cursor-pointer whitespace-nowrap rounded-xl bg-slate-100 px-4 py-2 text-xs font-medium tracking-wide text-black transition hover:opacity-75 text-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-100 active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed dark:bg-slate-800 dark:text-slate-300 dark:focus-visible:outline-slate-800">
             RAE
           </button>
         </div>
@@ -47,7 +46,7 @@ const CorrectionsList = ({
           </span>
         </div>
         <div className="flex">
-          <p className="text-slate-700 dark:text-slate-500">--{">"}</p>
+          <p className="text-slate-700 dark:text-slate-500">--{'>'}</p>
         </div>
         <div>
           <span className="w-fit inline-flex overflow-hidden rounded-xl border border-green-600 bg-white text-sm font-medium text-green-600 dark:border-green-600 dark:bg-slate-900 dark:text-green-600">
@@ -62,8 +61,7 @@ const CorrectionsList = ({
         <div>
           <button
             type="button"
-            className="cursor-pointer whitespace-nowrap rounded-xl bg-slate-100 px-4 py-2 text-xs font-medium tracking-wide text-black transition hover:opacity-75 text-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-100 active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed dark:bg-slate-800 dark:text-slate-300 dark:focus-visible:outline-slate-800"
-          >
+            className="cursor-pointer whitespace-nowrap rounded-xl bg-slate-100 px-4 py-2 text-xs font-medium tracking-wide text-black transition hover:opacity-75 text-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-100 active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed dark:bg-slate-800 dark:text-slate-300 dark:focus-visible:outline-slate-800">
             RAE
           </button>
         </div>

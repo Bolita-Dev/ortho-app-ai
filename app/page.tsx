@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import Textfield from "@/app/components/Textfield";
-import { generateObject } from "ai";
-import { ChangeEvent, useState } from "react";
-import { z } from "zod";
-import Card from "./components/Card";
-import CorrectionsList from "./components/CorrectionsList";
-import { createGoogleGenerativeAI } from "@ai-sdk/google";
+import Textfield from '@/app/components/Textfield';
+import { generateObject } from 'ai';
+import { ChangeEvent, useState } from 'react';
+import { z } from 'zod';
+import Card from './components/Card';
+import CorrectionsList from './components/CorrectionsList';
+import { createGoogleGenerativeAI } from '@ai-sdk/google';
 
 const schema = z.object({
   original: z.string(),
@@ -23,7 +23,7 @@ const schema = z.object({
 
 type ResultType = z.infer<typeof schema>;
 export default function Home() {
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState('');
   const [result, setResult] = useState<ResultType>({} as ResultType);
 
   const { corrected, original } = result;
@@ -33,7 +33,7 @@ export default function Home() {
   });
   const handleSubmit = async (event: any) => {
     const response = await generateObject({
-      model: google("models/gemini-1.5-flash-latest"),
+      model: google('models/gemini-1.5-flash-latest'),
       schema,
       prompt: `Revisa la siguiente frase para detectar faltas de ortografía y devuélveme un archivo JSON que contenga lo siguiente:
 original: La frase original.
@@ -47,6 +47,7 @@ raeUrl: El enlace a la regla específica en la web oficial de la RAE.
     });
 
     console.log(response.object);
+
     setResult(response.object);
   };
 
