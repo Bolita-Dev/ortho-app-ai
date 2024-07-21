@@ -5,6 +5,7 @@ import Card from './components/Card';
 import CorrectionsList from './components/CorrectionsList';
 import { GeneratedResponse } from './interfaces';
 import Form from './components/Form';
+import ResultsCard from './components/ResultsCard';
 
 export default function Home() {
   const [generated, setGenerated] = useState({} as GeneratedResponse);
@@ -19,9 +20,10 @@ export default function Home() {
     <main>
       <div className="flex flex-col items-center gap-4">
         <Form setGeneratedResponse={setGeneratedResponse} />
-        {/* <div className="flex w-full max-w-3xl">
+        <div className="flex w-full max-w-3xl">
           <ResultsCard />
-        </div> */}
+        </div>
+
         {correctedText && (
           <div className="flex w-full max-w-3xl gap-4">
             <Card>
