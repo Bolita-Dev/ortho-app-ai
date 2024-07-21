@@ -7,7 +7,8 @@ interface Props {
 }
 const Form = ({ setGeneratedResponse }: Props) => {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
-  console.log(textAreaRef.current?.value);
+  const apiKeyRef = useRef<HTMLInputElement>(null);
+
   const [wordCount, setWordCount] = useState<number>(0);
   const handleInput = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const textarea = textAreaRef.current;
@@ -30,9 +31,28 @@ const Form = ({ setGeneratedResponse }: Props) => {
       textarea.style.overflowY = 'hidden';
     }
   };
+
+  const handleGetCorrections = async () => {
+    const apiKey = apiKeyRef.current?.value;
+    const text = textAreaRef.current?.value;
+    if (!text) return;
+    const result = await getCorrections({ apiKey, originalText: text });
+
+    switch (result.type) {
+      case 'success':
+        setGeneratedResponse(result.generated);
+        textAreaRef.current.value = '';
+        setWordCount(0);
+        break;
+
+      default:
+        break;
+    }
+  };
   return (
-    <div className="flex w-full max-w-3xl flex-col gap-4">
+    <form className="flex w-full max-w-3xl flex-col gap-4">
       <input
+        ref={apiKeyRef}
         type="password"
         id="passwordInput"
         className="w-full rounded-xl border border-slate-300 bg-slate-100 px-6 py-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-700 disabled:cursor-not-allowed disabled:opacity-75 dark:border-slate-700 dark:bg-slate-800/50 dark:focus-visible:outline-blue-600"
@@ -45,7 +65,7 @@ const Form = ({ setGeneratedResponse }: Props) => {
           <textarea
             ref={textAreaRef}
             className="text-m w-full resize-none bg-transparent p-4 focus:outline-none"
-            name="original"
+            name="originalText"
             rows={2}
             placeholder="Escribe o pega aquí la frase a revisar..."
             onInput={handleInput}
@@ -53,21 +73,10 @@ const Form = ({ setGeneratedResponse }: Props) => {
         </div>
         <div className="flex w-full items-center justify-between border-t border-slate-300 bg-slate-100 py-2 pl-6 pr-2 dark:border-slate-700 dark:bg-slate-800">
           <button
-            type="submit"
+            type="button"
             className="ml-auto flex cursor-pointer items-center gap-2 whitespace-nowrap rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 px-2 py-2 text-center text-sm font-medium tracking-wide text-slate-100 transition hover:opacity-75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 active:opacity-100 active:outline-offset-0 disabled:cursor-not-allowed disabled:opacity-75 dark:text-slate-100 dark:focus-visible:outline-blue-600"
             disabled={wordCount < 1}
-            onClick={async () => {
-              if (!textAreaRef.current) return;
-              try {
-                const response = await getCorrections({
-                  originalText: textAreaRef.current?.value,
-                  apiKey: textAreaRef.current?.id,
-                });
-                setGeneratedResponse(response);
-              } catch (error) {
-                console.log(error);
-              }
-            }}>
+            onClick={handleGetCorrections}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"
@@ -84,7 +93,7 @@ const Form = ({ setGeneratedResponse }: Props) => {
           </button>
         </div>
       </div>
-    </div>
+    </form>
   );
 };
 
