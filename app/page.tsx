@@ -9,20 +9,19 @@ import CorrectionsList from "./components/CorrectionsList";
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
 
 const schema = z.object({
+  original: z.string(),
   corrected: z.string(),
-  explanation: z.string(),
   corrections: z.array(
     z.object({
       original: z.string(),
       corrected: z.string(),
       explanation: z.string(),
+      raeUrl: z.string(),
     })
   ),
   evaluation: z.object({
     score: z.number(),
     errors: z.number(),
-    warnings: z.number(),
-    info: z.number(),
   }),
 });
 
@@ -31,7 +30,7 @@ export default function Home() {
   const [input, setInput] = useState("");
   const [result, setResult] = useState<ResultType>({} as ResultType);
 
-  const { corrected, corrections } = result;
+  const { corrected, original } = result;
 
   const google = createGoogleGenerativeAI({
     apiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY,
@@ -41,17 +40,17 @@ export default function Home() {
       model: google("models/gemini-1.5-flash-latest"),
       schema,
       prompt: `Revisa si la siguiente frase tiene faltas de ortografía 
-      y devuelve un fichero json con la frase corregida y un array con 
+      y devuelve un fichero json con la frase corregida, la frase original y un array con 
       las palabras que estaban mal y muestra su versión errónea y correcta y 
-      la explicación de la real academia española de la lengua expicando la regla 
-      ortográfica que está incumpliendo: ${input}`,
+      la explicación sencilla de la real academia española de la lengua explicando la regla 
+      ortográfica que está incumpliendo y su enlace a la web oficial de la RAE: ${input}. También calcula un porcentaje de exito desde el cero al cien, calculando el porcentaje de errores.`,
     });
 
+    console.log(response.object);
     setResult(response.object);
   };
 
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value);
     event.preventDefault();
     setInput(event.target.value);
   };
@@ -69,45 +68,44 @@ export default function Home() {
             placeholder="Introduce tu API Key de Gemini"
           />
         </div>
-
         <div className="flex w-full max-w-3xl">
           <Textfield
             handleOnClick={handleSubmit}
             handleOnChange={handleOnChange}
           />
         </div>
-
         {/* <div className="flex w-full max-w-3xl">
           <ResultsCard />
         </div> */}
+        {corrected && (
+          <div className="flex w-full max-w-3xl gap-4">
+            <Card>
+              <div className="dark:text-slate-500 mb-2">
+                <span className="text-sm">Texto corregido</span>
+              </div>
+              <p className="text-pretty text-m text-slate-700 dark:text-slate-300">
+                {corrected}
+                {/* <span className="text-red-600 cursor-pointer">caffeine</span> */}
+              </p>
+            </Card>
 
-        <div className="flex w-full max-w-3xl gap-4">
-          <Card>
-            <div className="dark:text-slate-500 mb-2">
-              <span className="text-sm">Texto corregido</span>
-            </div>
-            <p className="text-pretty text-m text-slate-700 dark:text-slate-300">
-              A magician who turns
-              <span className="text-red-600 cursor-pointer">caffeine</span> into
-              code, pizza into programs, and stress into syntax errors.
-            </p>
-          </Card>
+            <Card>
+              <div className="dark:text-slate-500 mb-2">
+                <span className="text-sm">Texto original</span>
+              </div>
+              <p className="text-pretty text-m text-slate-700 dark:text-slate-300">
+                {original}
+                {/* <span className="text-green-600 cursor-pointer">computers</span> */}
+              </p>
+            </Card>
+          </div>
+        )}
 
-          <Card>
-            <div className="dark:text-slate-500 mb-2">
-              <span className="text-sm">Texto original</span>
-            </div>
-            <p className="text-pretty text-m text-slate-700 dark:text-slate-300">
-              Someone who talks to
-              <span className="text-green-600 cursor-pointer">computers</span>
-              in their own language and occasionally gets a response.
-            </p>
-          </Card>
-        </div>
-
-        <div className="flex w-full max-w-3xl mt-4">
-          <CorrectionsList />
-        </div>
+        {corrected && (
+          <div className="flex w-full max-w-3xl mt-4">
+            <CorrectionsList />
+          </div>
+        )}
       </div>
     </main>
   );
