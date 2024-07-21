@@ -19,10 +19,6 @@ const schema = z.object({
       raeUrl: z.string(),
     })
   ),
-  evaluation: z.object({
-    score: z.number(),
-    errors: z.number(),
-  }),
 });
 
 type ResultType = z.infer<typeof schema>;
@@ -39,11 +35,15 @@ export default function Home() {
     const response = await generateObject({
       model: google("models/gemini-1.5-flash-latest"),
       schema,
-      prompt: `Revisa si la siguiente frase tiene faltas de ortografía 
-      y devuelve un fichero json con la frase corregida, la frase original y un array con 
-      las palabras que estaban mal y muestra su versión errónea y correcta y 
-      la explicación sencilla de la real academia española de la lengua explicando la regla 
-      ortográfica que está incumpliendo y su enlace a la web oficial de la RAE: ${input}. También calcula un porcentaje de exito desde el cero al cien, calculando el porcentaje de errores.`,
+      prompt: `Revisa la siguiente frase para detectar faltas de ortografía y devuélveme un archivo JSON que contenga lo siguiente:
+original: La frase original.
+corrected: La frase corregida.
+corrections: Un array de objetos con los detalles de cada palabra incorrecta, incluyendo:
+original: La palabra escrita incorrectamente.
+corrected: La versión correcta de la palabra.
+explanation: Una explicación sencilla de la Real Academia Española (RAE) sobre la regla ortográfica incumplida.
+raeUrl: El enlace a la regla específica en la web oficial de la RAE.
+: ${input}. `,
     });
 
     console.log(response.object);
