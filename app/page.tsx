@@ -19,6 +19,7 @@ export default function Home() {
   const setGeneratedResponse = (response: GeneratedResponse) => {
     setGenerated(response);
   };
+
   return (
     <ToastProvider>
       <div className="flex flex-col items-center gap-4">

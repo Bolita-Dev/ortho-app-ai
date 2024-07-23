@@ -3,6 +3,7 @@
 import { generateObject, JSONParseError, TypeValidationError } from 'ai';
 import { GeneratedResponse, schema } from '../interfaces';
 import { createGoogleGenerativeAI } from '@ai-sdk/google';
+import { deserializeResponse } from '../utils/utils';
 
 type CorrectionsRequestType = {
   originalText: string;
@@ -31,7 +32,7 @@ export async function getCorrections(
     });
     return {
       type: 'success',
-      generated: response.object,
+      generated: deserializeResponse(response.object),
     };
   } catch (error) {
     console.error(error);

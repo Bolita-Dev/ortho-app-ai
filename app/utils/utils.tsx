@@ -1,4 +1,14 @@
 import { correctionStatus } from '../constants';
+import { GeneratedResponse } from '../interfaces';
+
+export const deserializeResponse = (
+  data: GeneratedResponse
+): GeneratedResponse => {
+  data.corrections = data.corrections.filter(
+    item => item.correctedWord !== item.originalWord
+  );
+  return data;
+};
 
 export const getSuccessPercentage = (
   errors: number,
