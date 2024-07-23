@@ -48,7 +48,15 @@ const Form = ({ setGeneratedResponse }: Props) => {
         textAreaRef.current.value = '';
         setWordCount(0);
         break;
-
+      case 'parse-error':
+        showToast('parse-error');
+        break;
+      case 'validation-error':
+        showToast('validation-error');
+        break;
+      case 'unknown-error':
+        showToast('unknown-error');
+        break;
       default:
         showToast('¡Introduce una API Key válida!');
     }

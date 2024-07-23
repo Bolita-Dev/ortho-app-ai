@@ -25,7 +25,7 @@ export async function getCorrections(
 
   try {
     const response = await generateObject({
-      model: google('models/gemini-1.5-flash-latest'),
+      model: google('models/gemini-1.5-pro-latest'),
       schema,
       prompt: `Revisa la siguiente frase para detectar faltas de ortografía y devuélveme un archivo JSON que contenga lo siguiente: La frase original, la frase corregida, un array de objetos con los detalles de cada palabra incorrecta, incluyendo: La palabra escrita incorrectamente, la versión correcta de la palabra y una explicación sencilla de la Real Academia Española (RAE) sobre la regla ortográfica incumplida y el enlace a la regla específica en la web oficial de la RAE: ${originalText}. `,
     });
@@ -34,6 +34,7 @@ export async function getCorrections(
       generated: response.object,
     };
   } catch (error) {
+    console.error(error);
     if (TypeValidationError.isTypeValidationError(error)) {
       return { type: 'validation-error', value: error.value };
     } else if (JSONParseError.isJSONParseError(error)) {
