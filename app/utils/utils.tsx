@@ -1,4 +1,4 @@
-import { correctionMessages } from '../constants';
+import { correctionStatus } from '../constants';
 
 export const getSuccessPercentage = (
   errors: number,
@@ -11,18 +11,14 @@ export const getSuccessPercentage = (
   return Math.round(successPercentage);
 };
 
-export const getCorrectionMessage = (successPercentage: number): string => {
+export const getCorrectionStatus = (
+  successPercentage: number
+): { img: string; messages: string[] } => {
   if (successPercentage >= 90) {
-    return correctionMessages.excellent[
-      Math.floor(Math.random() * correctionMessages.excellent.length)
-    ];
+    return correctionStatus.excellent;
   } else if (successPercentage >= 60) {
-    return correctionMessages.good[
-      Math.floor(Math.random() * correctionMessages.good.length)
-    ];
+    return correctionStatus.good;
   } else {
-    return correctionMessages.poor[
-      Math.floor(Math.random() * correctionMessages.poor.length)
-    ];
+    return correctionStatus.poor;
   }
 };

@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import Image from 'next/image';
-import { getCorrectionMessage } from '../utils/utils';
+import { getCorrectionStatus } from '../utils/utils';
 
 interface Props {
   successPercentage: number;
@@ -8,11 +8,13 @@ interface Props {
 }
 
 const ResultsCard = ({ successPercentage, errorCount }: Props) => {
+  const correctionStatus = getCorrectionStatus(successPercentage);
+
   return (
     <div className="flex w-full gap-4 overflow-hidden rounded-xl border border-slate-300 pr-4 text-sm text-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100">
       <div className="h-24 w-28 overflow-hidden object-cover">
         <Image
-          src="/duo.png"
+          src={correctionStatus.img}
           width={400}
           height={400}
           alt="Picture of the author"
@@ -33,7 +35,11 @@ const ResultsCard = ({ successPercentage, errorCount }: Props) => {
         </div>
       </div>
       <p className="flex flex-1 items-center justify-center gap-2 text-base italic">
-        {getCorrectionMessage(successPercentage)}
+        {
+          correctionStatus.messages[
+            Math.floor(Math.random() * correctionStatus.messages.length)
+          ]
+        }
       </p>
     </div>
   );
