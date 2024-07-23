@@ -31,7 +31,7 @@ const CorrectionsList = ({ corrections }: { corrections: Correction[] }) => {
           </div>
           <div>
             <Link
-              href={correction.raeUrl}
+              href={'https://dle.rae.es/' + correction.correctedWord}
               target="_blank"
               className="cursor-pointer whitespace-nowrap rounded-xl bg-slate-100 px-4 py-2 text-center text-xs font-medium tracking-wide text-black transition hover:opacity-75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-100 active:opacity-100 active:outline-offset-0 disabled:cursor-not-allowed disabled:opacity-75 dark:bg-slate-800 dark:text-slate-300 dark:focus-visible:outline-slate-800">
               RAE
