@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
 import Image from 'next/image';
+import { getCorrectionMessage } from '../utils/utils';
 
 interface Props {
   successPercentage: number;
@@ -32,7 +33,7 @@ const ResultsCard = ({ successPercentage, errorCount }: Props) => {
         </div>
       </div>
       <p className="flex flex-1 items-center justify-center gap-2 text-base italic">
-        ¡Esto necesita una intervención urgente! ¡Llamen a los lingüistas!
+        {getCorrectionMessage(successPercentage)}
       </p>
     </div>
   );

@@ -42,7 +42,7 @@ const Form = ({ setGeneratedResponse }: Props) => {
     if (!text) return;
     const result = await getCorrections({ apiKey, originalText: text });
 
-    switch (result.type) {
+    switch (result?.type) {
       case 'success':
         setGeneratedResponse(result.generated);
         textAreaRef.current.value = '';
