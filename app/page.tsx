@@ -7,6 +7,7 @@ import { GeneratedResponse } from './interfaces';
 import Form from './components/Form';
 import ResultsCard from './components/ResultsCard';
 import { ToastProvider } from './context/ToastContext';
+import { getSuccessPercentage } from './utils/utils';
 
 export default function Home() {
   const [generated, setGenerated] = useState({} as GeneratedResponse);
@@ -21,9 +22,18 @@ export default function Home() {
     <ToastProvider>
       <div className="flex flex-col items-center gap-4">
         <Form setGeneratedResponse={setGeneratedResponse} />
-        <div className="flex w-full max-w-3xl">
-          <ResultsCard />
-        </div>
+
+        {originalText && (
+          <div className="flex w-full max-w-3xl">
+            <ResultsCard
+              successPercentage={getSuccessPercentage(
+                generated?.corrections?.length,
+                originalText
+              )}
+              errorCount={corrections?.length}
+            />
+          </div>
+        )}
 
         {correctedText && (
           <div className="flex w-full max-w-3xl gap-4">
