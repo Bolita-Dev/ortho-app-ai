@@ -8,6 +8,7 @@ import Form from './components/Form';
 import ResultsCard from './components/ResultsCard';
 import { ToastProvider } from './context/ToastContext';
 import { getSuccessPercentage } from './utils/utils';
+import CopyToClipBoard from './components/CopyToClipBoard';
 
 export default function Home() {
   const [generated, setGenerated] = useState({} as GeneratedResponse);
@@ -44,7 +45,6 @@ export default function Home() {
 
               <p className="text-m text-pretty text-slate-700 dark:text-slate-300">
                 {originalText}
-                {/* <span className="text-green-600 cursor-pointer">computers</span> */}
               </p>
             </Card>
             <Card>
@@ -53,8 +53,10 @@ export default function Home() {
               </div>
               <p className="text-m text-pretty text-slate-700 dark:text-slate-300">
                 {correctedText}
-                {/* <span className="text-red-600 cursor-pointer">caffeine</span> */}
               </p>
+              <div className="absolute bottom-2 right-2">
+                <CopyToClipBoard textToCopy={correctedText} />
+              </div>
             </Card>
           </div>
         )}

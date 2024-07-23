@@ -2,15 +2,24 @@ import React from 'react';
 
 interface Props {
   message: string;
+  type?: 'success' | 'error';
 }
-const Toast = ({ message }: Props) => {
+const Toast = ({ message, type = 'success' }: Props) => {
+  const isError = type === 'error';
   return (
     <div
       className={`animate-slide-in fixed bottom-4 right-4 overflow-hidden rounded-xl text-slate-700 dark:bg-slate-900 dark:text-slate-300`}
       role="alert">
-      <div className="flex w-full items-center gap-2 bg-red-600/10 p-4">
+      <div
+        className={`flex w-full items-center gap-2 ${
+          isError ? 'bg-red-600/10' : 'bg-green-600/10'
+        } p-4`}>
         <div
-          className="rounded-full bg-red-600/15 p-1 text-red-600"
+          className={`rounded-full p-1 ${
+            isError
+              ? 'bg-red-600/15 text-red-600'
+              : 'bg-green-600/15 text-green-600'
+          }`}
           aria-hidden="true">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -26,8 +35,11 @@ const Toast = ({ message }: Props) => {
           </svg>
         </div>
         <div className="ml-2">
-          <h3 className="text-sm font-semibold text-red-600">
-            <span className="sr-only">Error</span>
+          <h3
+            className={`text-sm font-semibold ${
+              isError ? 'text-red-600' : 'text-green-600'
+            }`}>
+            <span className="sr-only">{isError ? 'Error' : 'Success'}</span>
           </h3>
           <p className="text-xs font-medium sm:text-sm">{message}</p>
         </div>
