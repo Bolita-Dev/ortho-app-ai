@@ -1,11 +1,15 @@
 import React, { useRef, useState } from 'react';
 import { getCorrections } from '../lib/actions';
 import { GeneratedResponse } from '../interfaces';
+import Toast from './Toast';
+import { useToast } from '../context/ToastContext';
 
 interface Props {
   setGeneratedResponse: (result: GeneratedResponse) => void;
 }
 const Form = ({ setGeneratedResponse }: Props) => {
+  const { showToast } = useToast();
+
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const apiKeyRef = useRef<HTMLInputElement>(null);
 
@@ -46,7 +50,7 @@ const Form = ({ setGeneratedResponse }: Props) => {
         break;
 
       default:
-        break;
+        showToast('¡Introduce una API Key válida!');
     }
   };
   return (
@@ -55,7 +59,7 @@ const Form = ({ setGeneratedResponse }: Props) => {
         ref={apiKeyRef}
         type="password"
         id="passwordInput"
-        className="w-full rounded-xl border border-slate-300 bg-slate-100 px-6 py-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-700 disabled:cursor-not-allowed disabled:opacity-75 dark:border-slate-700 dark:bg-slate-800/50 dark:focus-visible:outline-blue-600"
+        className="w-full rounded-xl border border-slate-300 bg-slate-100 px-6 py-4 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-700 disabled:cursor-not-allowed disabled:opacity-75 dark:border-slate-700 dark:bg-slate-800/50 dark:focus-visible:outline-blue-600"
         name="apiKey"
         autoComplete="current-password"
         placeholder="Introduce tu API Key de Gemini"

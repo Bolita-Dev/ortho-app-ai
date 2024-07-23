@@ -6,6 +6,7 @@ import CorrectionsList from './components/CorrectionsList';
 import { GeneratedResponse } from './interfaces';
 import Form from './components/Form';
 import ResultsCard from './components/ResultsCard';
+import { ToastProvider } from './context/ToastContext';
 
 export default function Home() {
   const [generated, setGenerated] = useState({} as GeneratedResponse);
@@ -17,7 +18,7 @@ export default function Home() {
     setGenerated(response);
   };
   return (
-    <main>
+    <ToastProvider>
       <div className="flex flex-col items-center gap-4">
         <Form setGeneratedResponse={setGeneratedResponse} />
         <div className="flex w-full max-w-3xl">
@@ -54,6 +55,6 @@ export default function Home() {
           </div>
         )}
       </div>
-    </main>
+    </ToastProvider>
   );
 }
