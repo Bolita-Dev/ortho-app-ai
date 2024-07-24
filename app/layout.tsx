@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: 'Ortho',
   description: 'Revisa tus faltas de ortografía',
   icons: {
-    icon: '/favicon.png',
+    icon: '/favicon.ico',
   },
 };
 
