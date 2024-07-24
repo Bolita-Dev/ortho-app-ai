@@ -18,7 +18,6 @@ type CorrectionResponseType =
 export async function getCorrections(
   data: CorrectionsRequestType
 ): Promise<CorrectionResponseType> {
-  console.log(process.env.GOOGLE_API_KEY);
   const google = createGoogleGenerativeAI({
     apiKey: process.env.GOOGLE_API_KEY || data.apiKey,
   });

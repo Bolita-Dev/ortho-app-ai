@@ -9,6 +9,7 @@ import ResultsCard from './components/ResultsCard';
 import { ToastProvider } from './context/ToastContext';
 import { getSuccessPercentage } from './utils/utils';
 import CopyToClipBoard from './components/CopyToClipBoard';
+import Skeleton from './components/Skeleton';
 
 export default function Home() {
   const [generated, setGenerated] = useState({} as GeneratedResponse);
@@ -36,6 +37,8 @@ export default function Home() {
             />
           </div>
         )}
+
+        {!correctedText && <Skeleton />}
 
         {correctedText && (
           <div className="flex w-full max-w-3xl gap-4">
