@@ -7,6 +7,9 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'Ortho',
   description: 'Revisa tus faltas de ortografía',
+  icons: {
+    icon: '/favicon.png',
+  },
 };
 
 export default function RootLayout({
