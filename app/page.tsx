@@ -55,7 +55,7 @@ export default function Home() {
               <p className="text-m text-pretty text-slate-700 dark:text-slate-300">
                 {correctedText}
               </p>
-              <div className="absolute bottom-2 right-2">
+              <div className="absolute right-2 top-2">
                 <CopyToClipBoard textToCopy={correctedText} />
               </div>
             </Card>

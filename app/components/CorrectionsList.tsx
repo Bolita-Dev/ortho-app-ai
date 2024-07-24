@@ -4,11 +4,11 @@ import Link from 'next/link';
 
 const CorrectionsList = ({ corrections }: { corrections: Correction[] }) => {
   return (
-    <div className="flex w-full flex-col gap-4 overflow-hidden">
+    <div className="flex w-full flex-col divide-y divide-slate-700 overflow-hidden">
       {corrections.map(correction => (
         <div
-          className="error-item flex items-center gap-2"
-          key={correction.originalWord}>
+          className="error-item flex items-center gap-2 py-3"
+          key={correction.correctedWord}>
           <div>
             <span className="inline-flex w-fit cursor-pointer overflow-hidden rounded-xl border border-red-600 bg-white text-sm font-medium text-red-600 dark:border-red-600 dark:bg-slate-900 dark:text-red-600">
               <span className="bg-red-600/10 px-2 py-1 dark:bg-red-600/10">
@@ -26,7 +26,7 @@ const CorrectionsList = ({ corrections }: { corrections: Correction[] }) => {
               </span>
             </span>
           </div>
-          <div className="ml-2 flex-1 overflow-hidden text-ellipsis text-nowrap text-sm text-slate-700 dark:text-slate-300">
+          <div className="ml-2 flex-1 overflow-hidden text-sm text-slate-700 dark:text-slate-300">
             {correction.errorExplanation}
           </div>
           <div>

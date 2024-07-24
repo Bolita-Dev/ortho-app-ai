@@ -28,7 +28,7 @@ export async function getCorrections(
     const response = await generateObject({
       model: google('models/gemini-1.5-pro-latest'),
       schema,
-      prompt: `Revisa la siguiente frase para detectar faltas de ortografía y devuélveme un archivo JSON que contenga lo siguiente: La frase original, la frase corregida, un array de objetos con los detalles de cada palabra incorrecta, incluyendo: La palabra escrita incorrectamente, la versión correcta de la palabra y una explicación sencilla de la Real Academia Española (RAE) sobre la regla ortográfica incumplida y el enlace a la regla específica en la web oficial de la RAE: ${originalText}. `,
+      prompt: `Revisa la siguiente frase para detectar faltas de ortografía y devuélveme un archivo JSON que contenga lo siguiente: La frase original, la frase corregida, un array de objetos con los detalles de cada palabra incorrecta, incluyendo: La palabra escrita incorrectamente, la versión correcta de la palabra y una explicación sencilla de la Real Academia Española (RAE) sobre la regla ortográfica incumplida: ${originalText}. Distingue entre mayúsculas y minúsculas únicamente si las palabras son nombres propios.`,
     });
     return {
       type: 'success',
