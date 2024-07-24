@@ -34,7 +34,7 @@ const ResultsCard = ({ successPercentage, errorCount }: Props) => {
           </p>
         </div>
       </div>
-      <p className="flex flex-1 items-center justify-center gap-2 text-base italic">
+      <p className="hidden flex-1 items-center justify-center gap-2 text-base italic sm:flex">
         {
           correctionStatus.messages[
             Math.floor(Math.random() * correctionStatus.messages.length)

@@ -3,7 +3,7 @@ import Card from './Card';
 
 const Skeleton = () => {
   return (
-    <div className="flex w-full max-w-3xl gap-4">
+    <div className="flex w-full max-w-3xl flex-col gap-4 sm:flex-row">
       <Card>
         <div className="flex w-full flex-col gap-2">
           <div

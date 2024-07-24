@@ -41,7 +41,7 @@ export default function Home() {
         {!correctedText && <Skeleton />}
 
         {correctedText && (
-          <div className="flex w-full max-w-3xl gap-4">
+          <div className="flex w-full max-w-3xl flex-col gap-4 sm:flex-row">
             <Card>
               <div className="mb-2 dark:text-slate-500">
                 <span className="text-sm">Texto original</span>
