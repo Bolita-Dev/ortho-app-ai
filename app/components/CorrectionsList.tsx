@@ -5,8 +5,8 @@ import Link from 'next/link';
 const CorrectionsList = ({ corrections }: { corrections: Correction[] }) => {
   return (
     <div className="flex w-full flex-col divide-y divide-slate-700 overflow-hidden">
-      {corrections.map(correction => (
-        <div className="py-3">
+      {corrections.map((correction, index) => (
+        <div className="py-3" key={index}>
           <div
             className="flex items-center gap-1 sm:gap-2"
             key={correction.correctedWord}>
