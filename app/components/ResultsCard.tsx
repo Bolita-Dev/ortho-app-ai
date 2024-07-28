@@ -23,7 +23,8 @@ const ResultsCard = ({ successPercentage, errorCount }: Props) => {
       <div className="flex flex-1 flex-wrap">
         <div className="percentage flex flex-1 flex-col justify-center">
           <p className="flex justify-center text-4xl font-bold">
-            {successPercentage}%
+            {successPercentage}
+            <span className="flex items-center text-base">%</span>
           </p>
           <p className="flex justify-center">correcto</p>
         </div>
