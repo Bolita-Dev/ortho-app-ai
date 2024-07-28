@@ -10,6 +10,8 @@ import { ToastProvider } from './context/ToastContext';
 import { getSuccessPercentage } from './utils/utils';
 import CopyToClipBoard from './components/CopyToClipBoard';
 import Skeleton from './components/Skeleton';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 export default function Home() {
   const [generated, setGenerated] = useState({} as GeneratedResponse);
@@ -25,79 +27,87 @@ export default function Home() {
 
   return (
     <ToastProvider>
-      <div className="flex flex-col items-center gap-4">
-        <Form setGeneratedResponse={setGeneratedResponse} />
+      <div className="box-border flex min-h-screen flex-col gap-4 p-4">
+        <Header></Header>
 
-        {originalText && (
-          <div className="flex w-full max-w-3xl">
-            <ResultsCard
-              successPercentage={getSuccessPercentage(
-                generated?.corrections?.length,
-                originalText
-              )}
-              errorCount={corrections?.length}
-            />
-          </div>
-        )}
+        {/* start content */}
+        <div className="flex flex-grow flex-col items-center gap-4">
+          <Form setGeneratedResponse={setGeneratedResponse} />
 
-        {!correctedText && <Skeleton />}
+          {originalText && (
+            <div className="flex w-full max-w-3xl">
+              <ResultsCard
+                successPercentage={getSuccessPercentage(
+                  generated?.corrections?.length,
+                  originalText
+                )}
+                errorCount={corrections?.length}
+              />
+            </div>
+          )}
 
-        {correctedText && (
-          <div className="flex w-full max-w-3xl flex-col gap-4 sm:flex-row">
-            <Card>
-              <div className="mb-2 dark:text-slate-500">
-                <span className="text-sm">Texto original</span>
-              </div>
+          {!correctedText && <Skeleton />}
 
-              <p className="text-m text-pretty text-slate-700 dark:text-slate-300">
-                {originalText.split(' ').map((word, index) => {
-                  const cleanWord = correctWord(word);
-                  const isCorrected = corrections.some(
-                    correction =>
-                      correctWord(correction.originalWord) === cleanWord
-                  );
-                  return (
-                    <span
-                      className={`text-m text-pretty ${isCorrected ? 'cursor-pointer text-red-600' : 'text-slate-700 dark:text-slate-300'}`}
-                      key={index}>
-                      {word}{' '}
-                    </span>
-                  );
-                })}
-              </p>
-            </Card>
-            <Card>
-              <div className="mb-2 dark:text-slate-500">
-                <span className="text-sm">Texto corregido</span>
-              </div>
-              <p className="text-m text-pretty text-slate-700 dark:text-slate-300">
-                {correctedText.split(' ').map((word, index) => {
-                  const cleanWord = correctWord(word);
-                  const isCorrected = corrections.some(
-                    correction =>
-                      correctWord(correction.correctedWord) === cleanWord
-                  );
-                  return (
-                    <span
-                      className={`text-m text-pretty ${isCorrected ? 'cursor-pointer text-green-600' : 'text-slate-700 dark:text-slate-300'}`}
-                      key={index}>
-                      {word}{' '}
-                    </span>
-                  );
-                })}
-              </p>
-              <div className="absolute right-2 top-2">
-                <CopyToClipBoard textToCopy={correctedText} />
-              </div>
-            </Card>
-          </div>
-        )}
+          {correctedText && (
+            <div className="flex w-full max-w-3xl flex-col gap-4 sm:flex-row">
+              <Card>
+                <div className="mb-2 dark:text-slate-500">
+                  <span className="text-sm">Texto original</span>
+                </div>
 
-        {correctedText && (
-          <div className="mt-4 flex w-full max-w-3xl">
-            <CorrectionsList corrections={corrections} />
-          </div>
-        )}
+                <p className="text-m text-pretty text-slate-700 dark:text-slate-300">
+                  {originalText.split(' ').map((word, index) => {
+                    const cleanWord = correctWord(word);
+                    const isCorrected = corrections.some(
+                      correction =>
+                        correctWord(correction.originalWord) === cleanWord
+                    );
+                    return (
+                      <span
+                        className={`text-m text-pretty ${isCorrected ? 'cursor-pointer text-red-600' : 'text-slate-700 dark:text-slate-300'}`}
+                        key={index}>
+                        {word}{' '}
+                      </span>
+                    );
+                  })}
+                </p>
+              </Card>
+              <Card>
+                <div className="mb-2 dark:text-slate-500">
+                  <span className="text-sm">Texto corregido</span>
+                </div>
+                <p className="text-m text-pretty text-slate-700 dark:text-slate-300">
+                  {correctedText.split(' ').map((word, index) => {
+                    const cleanWord = correctWord(word);
+                    const isCorrected = corrections.some(
+                      correction =>
+                        correctWord(correction.correctedWord) === cleanWord
+                    );
+                    return (
+                      <span
+                        className={`text-m text-pretty ${isCorrected ? 'cursor-pointer text-green-600' : 'text-slate-700 dark:text-slate-300'}`}
+                        key={index}>
+                        {word}{' '}
+                      </span>
+                    );
+                  })}
+                </p>
+                <div className="absolute right-2 top-2">
+                  <CopyToClipBoard textToCopy={correctedText} />
+                </div>
+              </Card>
+            </div>
+          )}
+
+          {correctedText && (
+            <div className="mt-4 flex w-full max-w-3xl">
+              <CorrectionsList corrections={corrections} />
+            </div>
+          )}
+        </div>
+        {/* end of content */}
+
+        <Footer></Footer>
       </div>
     </ToastProvider>
   );
