@@ -1,6 +1,5 @@
-import React, { ReactElement } from 'react';
 import Image from 'next/image';
-import { getCorrectionStatus } from '../utils/utils';
+import { getCorrectionStatus } from '@/app/utils/utils';
 
 interface Props {
   successPercentage: number;

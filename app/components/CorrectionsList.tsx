@@ -1,5 +1,4 @@
-import React, { ReactElement } from 'react';
-import { Correction } from '../interfaces';
+import { Correction } from '@/app/interfaces';
 import Link from 'next/link';
 
 const CorrectionsList = ({ corrections }: { corrections: Correction[] }) => {

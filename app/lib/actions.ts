@@ -34,7 +34,6 @@ export async function getCorrections(
       generated: deserializeResponse(response.object),
     };
   } catch (error) {
-    console.error(error);
     if (TypeValidationError.isTypeValidationError(error)) {
       return { type: 'validation-error', value: error.value };
     } else if (JSONParseError.isJSONParseError(error)) {
