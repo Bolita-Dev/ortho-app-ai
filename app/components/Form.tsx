@@ -1,17 +1,19 @@
 import React, { useRef, useState } from 'react';
-import { getCorrections } from '../lib/actions';
-import { GeneratedResponse } from '../interfaces';
-import Toast from './Toast';
-import { useToast } from '../context/ToastContext';
+import { useToast } from '@/app/context/ToastContext';
+import { GeneratedResponse } from '@/app/interfaces';
+import { getCorrections } from '@/app/lib/actions';
 
 interface Props {
   setGeneratedResponse: (result: GeneratedResponse) => void;
+  setLoading: (loading: boolean) => void;
+  loading: boolean;
 }
-const Form = ({ setGeneratedResponse }: Props) => {
+const Form = ({ setGeneratedResponse, setLoading, loading }: Props) => {
   const { showToast } = useToast();
 
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const apiKeyRef = useRef<HTMLInputElement>(null);
+  const [apiKeyError, setApiKeyError] = useState<boolean>(false);
 
   const [wordCount, setWordCount] = useState<number>(0);
   const handleInput = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -36,10 +38,19 @@ const Form = ({ setGeneratedResponse }: Props) => {
     }
   };
 
+  const handleApiKeyError = () => {
+    setApiKeyError(true);
+    apiKeyRef.current?.focus();
+  };
+
   const handleGetCorrections = async () => {
     const apiKey = apiKeyRef.current?.value;
     const text = textAreaRef.current?.value;
+
+    if (!apiKey) return handleApiKeyError();
     if (!text) return;
+
+    setLoading(true);
     const result = await getCorrections({ apiKey, originalText: text });
 
     switch (result?.type) {
@@ -48,18 +59,15 @@ const Form = ({ setGeneratedResponse }: Props) => {
         textAreaRef.current.value = '';
         setWordCount(0);
         break;
-      case 'parse-error':
-        showToast('parse-error');
-        break;
-      case 'validation-error':
-        showToast('validation-error');
-        break;
       case 'unknown-error':
-        showToast('unknown-error');
+        showToast('¡Introduce una API Key válida!');
+        handleApiKeyError();
         break;
       default:
-        showToast('¡Introduce una API Key válida!');
+        showToast('Ha habido un error, inténtalo de nuevo');
     }
+
+    setLoading(false);
   };
   return (
     <form className="flex w-full max-w-3xl flex-col gap-4">
@@ -67,10 +75,11 @@ const Form = ({ setGeneratedResponse }: Props) => {
         ref={apiKeyRef}
         type="password"
         id="passwordInput"
-        className="w-full rounded-xl border border-slate-300 bg-slate-100 px-6 py-4 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-700 disabled:cursor-not-allowed disabled:opacity-75 dark:border-slate-700 dark:bg-slate-800/50 dark:focus-visible:outline-blue-600"
+        className={`${apiKeyError ? 'focus-visible:outline-red-700' : 'focus-visible:outline-blue-600'} w-full rounded-xl px-6 py-4 text-white focus-visible:outline focus-visible:outline-2 disabled:cursor-not-allowed disabled:opacity-75 dark:border-slate-700 dark:bg-slate-800/50`}
         name="apiKey"
         autoComplete="current-password"
         placeholder="Introduce tu API Key de Gemini"
+        onChange={() => setApiKeyError(false)}
       />
       <div className="flex w-full flex-col overflow-hidden rounded-xl border border-slate-300 text-slate-700 has-[textarea:focus]:outline has-[textarea:focus]:outline-2 has-[textarea:focus]:outline-blue-700 dark:border-slate-700 dark:text-slate-300">
         <div className="bg-slate-100/50 p-2 dark:bg-slate-800/50">
@@ -87,7 +96,7 @@ const Form = ({ setGeneratedResponse }: Props) => {
           <button
             type="button"
             className="ml-auto flex cursor-pointer items-center gap-2 whitespace-nowrap rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 px-2 py-2 text-center text-sm font-medium tracking-wide text-slate-100 transition hover:opacity-75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 active:opacity-100 active:outline-offset-0 disabled:cursor-not-allowed disabled:opacity-75 dark:text-slate-100 dark:focus-visible:outline-blue-600"
-            disabled={wordCount < 1}
+            disabled={wordCount < 1 || loading}
             onClick={handleGetCorrections}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
