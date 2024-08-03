@@ -60,7 +60,7 @@ const Form = ({ setGeneratedResponse, setLoading, loading }: Props) => {
         setWordCount(0);
         break;
       case 'unknown-error':
-        showToast('¡Introduce una API Key válida!');
+        showToast('¡Introduce una API Key de Google Gemini válida!');
         handleApiKeyError();
         break;
       default:
