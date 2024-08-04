@@ -1,6 +1,6 @@
 ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white) ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
-# Ortho App
+# Ortho App AI
 
 **Corrige tu ortografía y aprende cuáles han sido los errores para no volver a caer en ellos.**
 
@@ -13,13 +13,13 @@ Ortho es una aplicación web fácil de usar, construida con Next.js y Tailwind, 
 #### 1. Clona el repositorio:
 
 ```bash
-git clone https://github.com/Bolita-Dev/orthography-ai
+git clone https://github.com/Bolita-Dev/ortho-app-ai.git
 ```
 
 #### 2. Navega al directorio del proyecto:
 
 ```bash
-cd orthography-ai
+cd ortho-app-ai
 ```
 
 #### 3. Instala las dependencias:
