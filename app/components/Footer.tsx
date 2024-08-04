@@ -10,7 +10,7 @@ const Footer = () => {
           2024 Ortho &#x2022;&nbsp;
           <Link
             target="_blank"
-            href="https://github.com/Bolita-Dev/orthography-ai"
+            href="https://github.com/Bolita-Dev/ortho-app-ai"
             className="hover:underline">
             Ver en Github
           </Link>
