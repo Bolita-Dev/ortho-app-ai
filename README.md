@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white) ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
-## Getting Started
+# Ortho App
 
-First, run the development server:
+**Corrige tu ortografía y aprende cuáles han sido los errores para no volver a caer en ellos.**
+
+Ortho es una aplicación web fácil de usar, construida con Next.js y Tailwind, que permite revisar la ortografía y la gramática de textos. Ofrece sugerencias para cada corrección y enlace directo a la explicación en la RAE (Real Academia Española), lo que la convierte en una herramienta realmente útil.
+
+![Ortho App Screenshots](public/screenshot.jpg)
+
+## Instalación y uso en local
+
+#### 1. Clona el repositorio:
+
+```bash
+git clone https://github.com/Bolita-Dev/orthography-ai
+```
+
+#### 2. Navega al directorio del proyecto:
+
+```bash
+cd orthography-ai
+```
+
+#### 3. Instala las dependencias:
+
+```bash
+npm install
+# o si usas Yarn:
+yarn install
+```
+
+#### 4. Ejecuta el servidor local:
 
 ```bash
 npm run dev
-# or
+# o si usas Yarn:
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### 5. Abre http://localhost:3000 para verlo en tu navegador.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## FAQ
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+#### ¿Ortho es gratis?
 
-## Learn More
+Sí, el uso de Ortho es completamente gratis, pero **deberás disponer de una API key de Google Gemini para poder usarla**. Esta API key es la que se utiliza para hacer las consultas a la IA.
 
-To learn more about Next.js, take a look at the following resources:
+#### ¿Ortho es infalible y siempre acierta en sus correcciones?
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+No, Ortho depende de los resultados que la IA Google Gemini devuelve, por tanto hay situaciones donde puede cometer errores.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+#### ¿Es normal que tarde tanto en recibir un resultado?
 
-## Deploy on Vercel
+El tiempo que tarda en conseguir una respuesta es proporcional al tamaño del texto a revisar. Si el texto tiene varios párrafos, el tiempo puede ser de entre 10-20 segundos.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### ¿Puedo clonar el repositorio de Ortho para hacer mis propias versiones de la app?
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Sí, puedes hacerlo, ya que su licencia es GNU GPLv3.
+
+## Licencia
+
+Este proyecto está licenciado bajo la Licencia GNU GPLv3 - consulta el archivo LICENSE para más detalles.
+
+[GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/)
