@@ -8,7 +8,7 @@ const Toast = ({ message, type = 'success' }: Props) => {
   const isError = type === 'error';
   return (
     <div
-      className={`animate-slide-in fixed bottom-4 right-4 overflow-hidden rounded-xl text-slate-700 dark:bg-slate-900 dark:text-slate-300`}
+      className={`animate-slide-in fixed bottom-4 right-4 overflow-hidden rounded-xl bg-slate-900 text-slate-300`}
       role="alert">
       <div
         className={`flex w-full items-center gap-2 ${

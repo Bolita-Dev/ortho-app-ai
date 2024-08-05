@@ -12,11 +12,11 @@ const CorrectionCards = ({
   return (
     <div className="flex w-full max-w-3xl flex-col gap-4 sm:flex-row">
       <Card>
-        <div className="mb-2 dark:text-slate-500">
+        <div className="mb-2 text-slate-500">
           <span className="text-sm">Texto original</span>
         </div>
 
-        <p className="text-m text-pretty text-slate-700 dark:text-slate-300">
+        <p className="text-m text-pretty text-slate-300">
           {originalText.split(' ').map((word, index) => {
             const cleanWord = correctWord(word);
             const isCorrected = corrections.some(
@@ -24,7 +24,7 @@ const CorrectionCards = ({
             );
             return (
               <span
-                className={`text-m text-pretty ${isCorrected ? 'cursor-pointer text-red-600' : 'text-slate-700 dark:text-slate-300'}`}
+                className={`text-m text-pretty ${isCorrected ? 'cursor-pointer text-red-600' : 'text-slate-300'}`}
                 key={index}>
                 {word}{' '}
               </span>
@@ -33,10 +33,10 @@ const CorrectionCards = ({
         </p>
       </Card>
       <Card>
-        <div className="mb-2 dark:text-slate-500">
+        <div className="mb-2 text-slate-500">
           <span className="text-sm">Texto corregido</span>
         </div>
-        <p className="text-m text-pretty text-slate-700 dark:text-slate-300">
+        <p className="text-m text-pretty text-slate-300">
           {correctedText.split(' ').map((word, index) => {
             const cleanWord = correctWord(word);
             const isCorrected = corrections.some(
@@ -44,7 +44,7 @@ const CorrectionCards = ({
             );
             return (
               <span
-                className={`text-m text-pretty ${isCorrected ? 'cursor-pointer text-green-600' : 'text-slate-700 dark:text-slate-300'}`}
+                className={`text-m text-pretty ${isCorrected ? 'cursor-pointer text-green-600' : 'text-slate-300'}`}
                 key={index}>
                 {word}{' '}
               </span>

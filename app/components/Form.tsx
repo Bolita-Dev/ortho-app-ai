@@ -83,14 +83,14 @@ const Form = ({ setGeneratedResponse, setLoading, loading }: Props) => {
         ref={apiKeyRef}
         type="password"
         id="passwordInput"
-        className={`${apiKeyError ? 'focus-visible:outline-red-700' : 'focus-visible:outline-blue-600'} w-full rounded-xl px-6 py-4 text-white focus-visible:outline focus-visible:outline-2 disabled:cursor-not-allowed disabled:opacity-75 dark:border-slate-700 dark:bg-slate-800/50`}
+        className={`${apiKeyError ? 'focus-visible:outline-red-700' : 'focus-visible:outline-blue-600'} w-full rounded-xl border-slate-700 bg-slate-800/50 px-6 py-4 text-white focus-visible:outline focus-visible:outline-2 disabled:cursor-not-allowed disabled:opacity-75`}
         name="apiKey"
         autoComplete="current-password"
         placeholder="Introduce tu API Key de OpenAI"
         onChange={() => setApiKeyError(false)}
       />
-      <div className="flex w-full flex-col overflow-hidden rounded-xl border border-slate-300 text-slate-700 has-[textarea:focus]:outline has-[textarea:focus]:outline-2 has-[textarea:focus]:outline-blue-700 dark:border-slate-700 dark:text-slate-300">
-        <div className="bg-slate-100/50 p-2 dark:bg-slate-800/50">
+      <div className="flex w-full flex-col overflow-hidden rounded-xl border border-slate-700 text-slate-300 has-[textarea:focus]:outline has-[textarea:focus]:outline-2 has-[textarea:focus]:outline-blue-700">
+        <div className="bg-slate-800/50 p-2">
           <textarea
             ref={textAreaRef}
             className="text-m w-full resize-none bg-transparent p-4 focus:outline-none"
@@ -100,10 +100,10 @@ const Form = ({ setGeneratedResponse, setLoading, loading }: Props) => {
             onInput={handleInput}
           />
         </div>
-        <div className="flex w-full items-center justify-between border-t border-slate-300 bg-slate-100 py-2 pl-6 pr-2 dark:border-slate-700 dark:bg-slate-800">
+        <div className="flex w-full items-center justify-between border-t border-slate-700 bg-slate-800 py-2 pl-6 pr-2">
           <button
             type="button"
-            className="ml-auto flex cursor-pointer items-center gap-2 whitespace-nowrap rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 px-2 py-2 text-center text-sm font-medium tracking-wide text-slate-100 transition hover:opacity-75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 active:opacity-100 active:outline-offset-0 disabled:cursor-not-allowed disabled:opacity-75 dark:text-slate-100 dark:focus-visible:outline-blue-600"
+            className="disabled:opacity-75focus-visible:outline-blue-600 ml-auto flex cursor-pointer items-center gap-2 whitespace-nowrap rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 px-2 py-2 text-center text-sm font-medium tracking-wide text-slate-100 transition hover:opacity-75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 active:opacity-100 active:outline-offset-0 disabled:cursor-not-allowed"
             disabled={wordCount < 1 || loading}
             onClick={handleGetCorrections}>
             <svg
