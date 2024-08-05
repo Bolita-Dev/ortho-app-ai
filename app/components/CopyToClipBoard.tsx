@@ -5,11 +5,13 @@ interface Props {
 }
 const CopyToClipBoard = ({ textToCopy }: Props) => {
   const { showToast } = useToast();
+
   const handleCopy = () => {
     navigator.clipboard.writeText(textToCopy).then(() => {
       showToast('Texto copiado al portapapeles', 'success');
     });
   };
+
   return (
     <button
       onClick={handleCopy}

@@ -38,11 +38,9 @@ export const highlightWords = (
   words: string[],
   color: string
 ) => {
-  words.forEach(word => {
-    const sanitized = word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()¿?]/g, '');
-    let regex = new RegExp(`\\b(${sanitized})\\b`, 'gi');
-    sentence = sentence.replace(regex, `<span class="${color}">$1</span>`);
+  const pattern = new RegExp(`(${words.join('|')})`, 'gi');
+  const highlightedText = sentence.replace(pattern, match => {
+    return `<span class="${color}">${match}</span>`;
   });
-
-  return sentence;
+  return highlightedText;
 };
