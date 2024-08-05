@@ -32,3 +32,19 @@ export const getCorrectionStatus = (
     return correctionStatus.excellent;
   }
 };
+
+export const highlightWords = (
+  sentence: string,
+  words: string[],
+  color: string
+) => {
+  words.forEach(word => {
+    const sanitized = word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()¿?]/g, '');
+    console.log(sanitized);
+    let regex = new RegExp(`\\b(${sanitized})\\b`, 'gi');
+    console.log(regex);
+    sentence = sentence.replace(regex, `<span class="${color}">$1</span>`);
+  });
+  console.log(sentence);
+  return sentence;
+};
