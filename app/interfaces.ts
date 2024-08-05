@@ -16,3 +16,7 @@ export const schema = z.object({
 export type GeneratedResponse = z.infer<typeof schema>;
 
 export type Correction = GeneratedResponse['corrections'][number];
+
+export type ErrorWithStatusCode = {
+  statusCode: number;
+};

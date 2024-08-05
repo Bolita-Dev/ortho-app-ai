@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { useToast } from '@/app/context/ToastContext';
-import { GeneratedResponse } from '@/app/interfaces';
+import { ErrorWithStatusCode, GeneratedResponse } from '@/app/interfaces';
 import { getCorrections } from '@/app/lib/actions';
 
 interface Props {
@@ -8,6 +8,7 @@ interface Props {
   setLoading: (loading: boolean) => void;
   loading: boolean;
 }
+
 const Form = ({ setGeneratedResponse, setLoading, loading }: Props) => {
   const { showToast } = useToast();
 
@@ -60,9 +61,10 @@ const Form = ({ setGeneratedResponse, setLoading, loading }: Props) => {
         setWordCount(0);
         break;
       case 'unknown-error':
-        if (result.error.statusCode === 401) {
+        const error = result.error as ErrorWithStatusCode;
+        if (error.statusCode === 401) {
           showToast('La API key de OpenAI introducida es incorrecta');
-        } else if (result.error.statusCode === 429)
+        } else if (error.statusCode === 429)
           showToast('Has excedido la cuota de peticiones de tu cuenta');
         else {
           showToast('Ha habido un error, inténtalo de nuevo');
