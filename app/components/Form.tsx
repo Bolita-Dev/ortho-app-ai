@@ -60,7 +60,13 @@ const Form = ({ setGeneratedResponse, setLoading, loading }: Props) => {
         setWordCount(0);
         break;
       case 'unknown-error':
-        showToast('¡Introduce una API Key de Google Gemini válida!');
+        if (result.error.statusCode === 401) {
+          showToast('La API key de OpenAI introducida es incorrecta');
+        } else if (result.error.statusCode === 429)
+          showToast('Has excedido la cuota de peticiones de tu cuenta');
+        else {
+          showToast('Ha habido un error, inténtalo de nuevo');
+        }
         handleApiKeyError();
         break;
       default:
@@ -78,7 +84,7 @@ const Form = ({ setGeneratedResponse, setLoading, loading }: Props) => {
         className={`${apiKeyError ? 'focus-visible:outline-red-700' : 'focus-visible:outline-blue-600'} w-full rounded-xl px-6 py-4 text-white focus-visible:outline focus-visible:outline-2 disabled:cursor-not-allowed disabled:opacity-75 dark:border-slate-700 dark:bg-slate-800/50`}
         name="apiKey"
         autoComplete="current-password"
-        placeholder="Introduce tu API Key de Gemini"
+        placeholder="Introduce tu API Key de OpenAI"
         onChange={() => setApiKeyError(false)}
       />
       <div className="flex w-full flex-col overflow-hidden rounded-xl border border-slate-300 text-slate-700 has-[textarea:focus]:outline has-[textarea:focus]:outline-2 has-[textarea:focus]:outline-blue-700 dark:border-slate-700 dark:text-slate-300">

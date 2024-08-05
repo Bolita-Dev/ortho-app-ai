@@ -50,11 +50,11 @@ yarn dev
 
 #### ¿Ortho es gratis?
 
-Sí, el uso de Ortho es completamente gratis, pero **deberás disponer de una API key de Google Gemini para poder usarla**. Esta API key es la que se utiliza para hacer las consultas a la IA.
+Sí, el uso de Ortho es completamente gratis, pero **deberás disponer de una API key de OpenAI para poder usarla**. Esta API key es la que se utiliza para hacer las consultas a la IA.
 
 #### ¿Ortho es infalible y siempre acierta en sus correcciones?
 
-No, Ortho depende de los resultados que la IA Google Gemini devuelve, por tanto hay situaciones donde puede cometer errores.
+No, Ortho depende de los resultados que la IA ChatGPT devuelve, por tanto hay situaciones donde puede cometer errores.
 
 #### ¿Es normal que tarde tanto en recibir un resultado?
 

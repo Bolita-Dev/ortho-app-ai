@@ -28,7 +28,7 @@ export const ToastProvider = ({ children }: ToastProviderProps) => {
     setToast({ message, type, isVisible: true });
     setTimeout(() => {
       setToast({ message: '', type, isVisible: false });
-    }, 3000);
+    }, 5000);
   };
 
   return (

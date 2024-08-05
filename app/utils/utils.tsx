@@ -22,13 +22,13 @@ export const getSuccessPercentage = (
 };
 
 export const getCorrectionStatus = (
-  successPercentage: number
+  errorCount: number
 ): { img: string; messages: string[] } => {
-  if (successPercentage >= 90) {
-    return correctionStatus.excellent;
-  } else if (successPercentage >= 60) {
+  if (errorCount >= 3) {
+    return correctionStatus.poor;
+  } else if (errorCount >= 1) {
     return correctionStatus.good;
   } else {
-    return correctionStatus.poor;
+    return correctionStatus.excellent;
   }
 };

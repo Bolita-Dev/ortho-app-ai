@@ -7,7 +7,7 @@ interface Props {
 }
 
 const ResultsCard = ({ successPercentage, errorCount }: Props) => {
-  const correctionStatus = getCorrectionStatus(successPercentage);
+  const correctionStatus = getCorrectionStatus(errorCount);
 
   return (
     <div className="flex w-full gap-4 overflow-hidden rounded-xl border border-slate-300 pr-4 text-sm text-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100">

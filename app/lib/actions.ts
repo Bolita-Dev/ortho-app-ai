@@ -2,8 +2,8 @@
 
 import { generateObject, JSONParseError, TypeValidationError } from 'ai';
 import { GeneratedResponse, schema } from '../interfaces';
-import { createGoogleGenerativeAI } from '@ai-sdk/google';
 import { deserializeResponse } from '../utils/utils';
+import { createOpenAI, openai } from '@ai-sdk/openai';
 
 type CorrectionsRequestType = {
   originalText: string;
@@ -18,14 +18,16 @@ type CorrectionResponseType =
 export async function getCorrections(
   data: CorrectionsRequestType
 ): Promise<CorrectionResponseType> {
-  const google = createGoogleGenerativeAI({
-    apiKey: process.env.GOOGLE_API_KEY || data.apiKey,
-  });
   const { originalText } = data;
+
+  const openaiModel = createOpenAI({
+    apiKey: process.env.OPENAI_API_KEY || data.apiKey,
+    compatibility: 'strict',
+  });
 
   try {
     const response = await generateObject({
-      model: google('models/gemini-1.5-pro-latest'),
+      model: openaiModel('gpt-4o-mini'),
       schema,
       prompt: `Revisa la siguiente frase para detectar faltas de ortografía y devuélveme un archivo JSON que contenga lo siguiente: La frase original, la frase corregida, un array de objetos con los detalles de cada palabra incorrecta, incluyendo: La palabra escrita incorrectamente, la versión correcta de la palabra y una explicación sencilla de la Real Academia Española (RAE) sobre la regla ortográfica que se ha incumplido: ${originalText}.`,
     });
