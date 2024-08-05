@@ -27,7 +27,7 @@ export async function getCorrections(
 
   try {
     const response = await generateObject({
-      model: openaiModel('gpt-4o-mini'),
+      model: openaiModel('gpt-4o'),
       schema,
       prompt: `Revisa la siguiente frase para detectar faltas de ortografía y devuélveme un archivo JSON que contenga lo siguiente: La frase original, la frase corregida, un array de objetos con los detalles de cada palabra incorrecta, incluyendo: La palabra escrita incorrectamente, la versión correcta de la palabra y una explicación sencilla de la Real Academia Española (RAE) sobre la regla ortográfica que se ha incumplido: ${originalText}.`,
     });
