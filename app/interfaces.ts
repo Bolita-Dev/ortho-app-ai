@@ -8,7 +8,6 @@ export const schema = z.object({
       originalWord: z.string(),
       correctedWord: z.string(),
       errorExplanation: z.string(),
-      raeUrl: z.string(),
     })
   ),
 });

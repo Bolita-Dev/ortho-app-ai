@@ -10,7 +10,7 @@ const CorrectionsList = ({ corrections }: { corrections: Correction[] }) => {
             className="flex items-center gap-1 sm:gap-2"
             key={correction.correctedWord}>
             <div>
-              <span className="inline-flex w-fit cursor-pointer overflow-hidden rounded-xl border border-red-600 bg-slate-900 bg-white text-sm font-medium text-red-600">
+              <span className="inline-flex w-fit cursor-pointer overflow-hidden rounded-xl border border-red-600 bg-slate-900 text-sm font-medium text-red-600">
                 <span className="bg-red-600/10 px-2 py-1">
                   {correction.originalWord}
                 </span>
@@ -20,7 +20,7 @@ const CorrectionsList = ({ corrections }: { corrections: Correction[] }) => {
               <p className="text-slate-500">--{'>'}</p>
             </div>
             <div>
-              <span className="inline-flex w-fit cursor-pointer overflow-hidden rounded-xl border border-green-600 bg-slate-900 bg-white text-sm font-medium text-green-600">
+              <span className="inline-flex w-fit cursor-pointer overflow-hidden rounded-xl border border-green-600 bg-slate-900 text-sm font-medium text-green-600">
                 <span className="bg-green-600/10 px-2 py-1">
                   {correction.correctedWord}
                 </span>
