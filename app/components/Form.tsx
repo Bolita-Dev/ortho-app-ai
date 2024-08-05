@@ -83,7 +83,7 @@ const Form = ({ setGeneratedResponse, setLoading, loading }: Props) => {
         ref={apiKeyRef}
         type="password"
         id="passwordInput"
-        className={`${apiKeyError ? 'focus-visible:outline-red-700' : 'focus-visible:outline-blue-600'} w-full rounded-xl border-slate-700 bg-slate-800/50 px-6 py-4 text-white focus-visible:outline focus-visible:outline-2 disabled:cursor-not-allowed disabled:opacity-75`}
+        className={`${apiKeyError ? 'focus-visible:outline-red-700' : 'focus-visible:outline-blue-600'} w-full rounded-xl border border-slate-700 bg-slate-800/50 px-6 py-4 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600 disabled:cursor-not-allowed disabled:opacity-75`}
         name="apiKey"
         autoComplete="current-password"
         placeholder="Introduce tu API Key de OpenAI"
